@@ -16,7 +16,7 @@ module.exports = function(app) {
 	//所有的页面路由
 	app.use('/', routers);
 	
-	//404
+	//404 及错误处理
 	app.get('*', function(req, res, next) {
 		res.render('index', {
 			title: 'Express+404'+ req.url
