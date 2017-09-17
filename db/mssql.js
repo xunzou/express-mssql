@@ -9,6 +9,7 @@ var config = require('./config')
 
 var pool = new mssql.ConnectionPool(config)
 
+var errInfo = require('./error')
 //基础查询
 var query = function(sql, callback) {
         var data = {
@@ -17,11 +18,12 @@ var query = function(sql, callback) {
         }
         pool.connect( err => {
             if (err) {
+                errInfo(err)
                 data.error = err;
+                errInfo(data.error)
                 callback(data)
                 return
             };
-            console.log(1)
             pool.request() // or: new sql.Request(pool1)
                 .query(sql, (err, result) => {
                     // ... error checks
@@ -39,7 +41,7 @@ var query = function(sql, callback) {
         })
 
     }
-    
+
     //流查询  用于大数据 
 var queryStream = function(sql, callback) {
     var data = {
