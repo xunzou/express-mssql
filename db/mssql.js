@@ -22,22 +22,30 @@ var query = function(sql, callback) {
                 data.error = err;
                 errInfo(data.error)
                 callback(data)
+                //连接完成，关闭连接
+                pool.close()
                 return
             };
             pool.request() // or: new sql.Request(pool1)
                 .query(sql, (err, result) => {
+                    //连接完成，关闭连接
+                    pool.close()
                     // ... error checks
                     if (err) {
                         data.error = err;
                         callback(data)
                         return
                     };
+                    //返回值处理
                     data.result = result;
                     callback(data)
                 })
+        })
 
 
-
+        pool.on('error', err => {
+            console.log(222222)
+            // ... error handler
         })
 
     }

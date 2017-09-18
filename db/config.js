@@ -7,9 +7,9 @@
 
 var config = {
 	user: 'sa',
-	password: '',
+	password: '123456',
 	server: 'localhost',
-	database: 'database',
+	database: 'main',
 	port: 1433,
 	options: {
 		encrypt: true // Use this if you're on Windows Azure

@@ -32,9 +32,13 @@ router.get('/user', function(req, res, next) {
 
 router.get('/t2',function(req, res, next){
 
-	sql('select',function(data){
+	sql('select top 10 *  from JW_Account',function(data){
+        var sc = 200
+        if (data.error) {
+            sc = 400
+        };
 		res.type('json');
-		res.status(400).json(data).end();
+		res.status(sc).json(data).end();
 	})
 	/*var pool1 = new mssql.ConnectionPool(config, function(err){
             console.dir(err)

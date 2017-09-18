@@ -12,11 +12,11 @@ var errObj = {
 }
 
 var error = err => {
-	console.log(JSON.stringify(err))
+	//console.log(JSON.stringify(err))
 	if (err) {
 		err.msg = errObj[err.name];
-		err.originalError = null
-		delete err.originalError
+		//err.originalError = null
+		//delete err.originalError
 	};
 	console.log(JSON.stringify(err))
 }
